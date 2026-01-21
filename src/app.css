@@ -1,5 +1,22 @@
 @import 'tailwindcss';
 
+/* Custom theme - Tailwind v4 */
+@theme {
+	--color-honey-50: #fdf2f6;
+	--color-honey-100: #fce7ef;
+	--color-honey-200: #f9d0e0;
+	--color-honey-300: #f4a9c6;
+	--color-honey-400: #ec72a0;
+	--color-honey-500: #ae0d46;
+	--color-honey-600: #9a0b3d;
+	--color-honey-700: #800932;
+	--color-honey-800: #6b0829;
+	--color-honey-900: #5a0723;
+	--color-honey-950: #330413;
+
+	--font-family-sans: 'Inter', system-ui, sans-serif;
+}
+
 /* Custom base styles */
 @layer base {
 	html {
