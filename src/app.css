@@ -1,45 +1,32 @@
 @import 'tailwindcss';
 
-/* Custom theme - Tailwind v4 */
+/**
+ * Honeybloom Palette — LOCKED Jan 24, 2026
+ *
+ * Colors:
+ *   "our black"          → bg-dark         #121212   Canvas
+ *   "our sophie magenta" → bg-magenta      #AE0D46   Sophie accent (Home)
+ *   "our emerald"        → bg-emerald      #10B981   Business accent (FC/Pricing)
+ *   "our text cream"     → text-cream      #F5F0E6   Text, light surfaces
+ *   "our soft magenta"   → bg-magenta/[0.08]        8% magenta surface
+ *   "our cream text"     → text-cream/70            Muted text
+ *   "our soft emerald"   → bg-emerald/[0.08]        8% emerald surface
+ *
+ * Usage:
+ *   Surfaces:  8% opacity bg + full border
+ *   Headlines: Full accent color
+ *   CTAs:      Full saturation fill
+ */
 @theme {
-	/* Blue's palette — DARK MODE (inverted) */
-	--color-dark: #0D0D0D;
-	--color-cream: #F5F0E6;
-	--color-beige: #D4C5B0;
-	--color-magenta: #AE0D46;
-
-	/* Magenta variants */
-	--color-magenta-light: #c91054;
-	--color-magenta-dark: #8a0a38;
-
-	--font-family-sans: 'Inter', system-ui, sans-serif;
-	--font-family-serif: 'Playfair Display', Georgia, serif;
+	--color-dark: #121212;      /* "our black" — canvas */
+	--color-magenta: #AE0D46;   /* "our sophie magenta" — Sophie accent */
+	--color-emerald: #10B981;   /* "our emerald" — business accent */
+	--color-cream: #F5F0E6;     /* "our text cream" — text/surfaces */
 }
 
-/* Custom base styles */
-@layer base {
-	html, body {
-		@apply antialiased;
-		background-color: var(--color-dark);
-		color: var(--color-cream);
-		min-height: 100vh;
-		margin: 0;
-		padding: 0;
-	}
-}
-
-/* Custom component styles */
-@layer components {
-	.btn-primary {
-		background-color: var(--color-magenta);
-		@apply text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105;
-	}
-
-	.btn-primary:hover {
-		background-color: var(--color-magenta-light);
-	}
-
-	.card {
-		@apply rounded-2xl overflow-hidden;
-	}
+html, body {
+	background-color: var(--color-dark);
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
 }
