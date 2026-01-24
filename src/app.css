@@ -2,39 +2,44 @@
 
 /* Custom theme - Tailwind v4 */
 @theme {
-	--color-honey-50: #fdf2f6;
-	--color-honey-100: #fce7ef;
-	--color-honey-200: #f9d0e0;
-	--color-honey-300: #f4a9c6;
-	--color-honey-400: #ec72a0;
-	--color-honey-500: #ae0d46;
-	--color-honey-600: #9a0b3d;
-	--color-honey-700: #800932;
-	--color-honey-800: #6b0829;
-	--color-honey-900: #5a0723;
-	--color-honey-950: #330413;
+	/* Blue's palette — DARK MODE (inverted) */
+	--color-dark: #0D0D0D;
+	--color-cream: #F5F0E6;
+	--color-beige: #D4C5B0;
+	--color-magenta: #AE0D46;
+
+	/* Magenta variants */
+	--color-magenta-light: #c91054;
+	--color-magenta-dark: #8a0a38;
 
 	--font-family-sans: 'Inter', system-ui, sans-serif;
+	--font-family-serif: 'Playfair Display', Georgia, serif;
 }
 
 /* Custom base styles */
 @layer base {
-	html {
+	html, body {
 		@apply antialiased;
-	}
-
-	body {
-		@apply bg-neutral-950 text-neutral-100;
+		background-color: var(--color-dark);
+		color: var(--color-cream);
+		min-height: 100vh;
+		margin: 0;
+		padding: 0;
 	}
 }
 
 /* Custom component styles */
 @layer components {
 	.btn-primary {
-		@apply bg-honey-500 hover:bg-honey-400 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105;
+		background-color: var(--color-magenta);
+		@apply text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105;
 	}
 
-	.input-email {
-		@apply w-full bg-neutral-900 border border-neutral-700 rounded-lg px-4 py-3 text-neutral-100 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-honey-500 focus:border-transparent;
+	.btn-primary:hover {
+		background-color: var(--color-magenta-light);
+	}
+
+	.card {
+		@apply rounded-2xl overflow-hidden;
 	}
 }
