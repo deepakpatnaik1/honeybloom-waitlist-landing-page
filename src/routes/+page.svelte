@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+    import ScrollReveal from '$lib/ScrollReveal.svelte';
 
 	let spotsTotal = 500;
 	let spotsClaimed = 47;
@@ -9,11 +10,12 @@
 	// Threshold display: before 50, show "500 spots available". After 50, show "X of 500 claimed"
 	$: showCounter = spotsClaimed >= 50;
 
-	// Scroll reveal animation removed - failed attempt #2 Jan 24
-	// See launch-scroll-reveal.md for post-mortem
-	// Handoff to Gemini for Jan 25
 	onMount(() => {
-		// Placeholder
+		// Force scroll to top on refresh so the "peek" animation works as intended
+		if (history.scrollRestoration) {
+			history.scrollRestoration = 'manual';
+		}
+		window.scrollTo(0, 0);
 	});
 </script>
 
@@ -91,6 +93,15 @@
 			</div>
 		</div>
 	</section>
+
+
+	<!-- ═══════════════════════════════════════════════════════════════════════════
+	     BLOCK 1.5: SCROLL REVEAL "VISION"
+	     The interactive demo.
+	     ═══════════════════════════════════════════════════════════════════════════ -->
+	<div class="-mt-[25vh] relative z-20 pointer-events-none">
+		<ScrollReveal />
+	</div>
 
 
 	<!-- ═══════════════════════════════════════════════════════════════════════════
