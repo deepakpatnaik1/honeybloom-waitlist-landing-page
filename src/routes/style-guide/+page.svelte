@@ -2109,14 +2109,22 @@
 		</div>
 
 		<!-- Scroll indicator -->
-		<div class="absolute bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-cream/40 z-10">
+		<div class="absolute bottom-40 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-cream/40 z-10">
 			<span class="text-small">Scroll to reveal the magic!</span>
 			<svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
 			</svg>
 		</div>
 
-		<!-- Phone will be added here after we verify clean slate -->
+		<!-- Phone — Sophie line should align with fold (magenta border) -->
+		<!-- Width: 400px | TranslateY: 82.5% -->
+		<div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[82.5%]">
+			<img
+				src="/images/phone-front-view.png"
+				alt="Sophie chat preview"
+				style="width: 400px;"
+			/>
+		</div>
 	</section>
 
 	<!-- Below the fold — where revealed content will appear -->
