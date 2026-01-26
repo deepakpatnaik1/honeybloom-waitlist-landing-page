@@ -2116,93 +2116,172 @@
 			</svg>
 		</div>
 
-		<!-- Phone peeking from below the fold -->
-		<div class="absolute bottom-0 left-1/2 -translate-x-1/2">
-			<!-- Phone container with PNG frame overlay -->
-			<div
-				class="relative"
-				style="transform: translateY(85%);"
-			>
-			<!-- PNG phone frame (on top) -->
-			<img
-				src="/reference/png-phone-front.png"
-				alt="Phone frame"
-				class="relative z-10 pointer-events-none"
-				style="height: 650px; width: auto;"
-			/>
-			<!-- Chat content (behind the frame, shows through transparent screen) -->
-			<div class="absolute inset-0 z-0 flex items-center justify-center">
-				<div
-					class="bg-[#1a1a1a] rounded-[2.5rem] overflow-hidden relative"
-					style="width: 280px; height: 618px; margin-top: -2px;"
-				>
-				<!-- Phone content -->
-				<div class="p-4 pt-8">
-					<!-- Notch space (no visible notch, just spacing) -->
-
-					<!-- Sophie header -->
-					<div class="flex items-center gap-3 pb-3 border-b border-cream/20">
-						<!-- Avatar circle placeholder -->
-						<div class="w-10 h-10 rounded-full bg-cream/20"></div>
-						<!-- Name and status -->
-						<div>
-							<p class="text-cream font-medium text-sm">Sophie</p>
-							<p class="text-emerald font-mono text-[10px]">Online</p>
-						</div>
-					</div>
-
-					<!-- Chat messages -->
-					<div class="pt-4 space-y-4">
-						<!-- Sophie message 1 -->
-						<div class="flex justify-start">
-							<div class="max-w-[80%] px-3 py-2 bg-magenta/20 border border-magenta/30 rounded-2xl rounded-tl-sm">
-								<p class="text-cream text-xs">Hey – now that you got your promotion, are you finally getting that model airplane? You know you want it :)</p>
-							</div>
-						</div>
-						<!-- User message -->
-						<div class="flex justify-end">
-							<div class="max-w-[80%] px-3 py-2 bg-cream/10 border border-cream/20 rounded-2xl rounded-tr-sm">
-								<p class="text-cream text-xs">What, how do you remember that?! I must have told you that, what, a year ago?</p>
-							</div>
-						</div>
-						<!-- Sophie message 2 -->
-						<div class="flex justify-start">
-							<div class="max-w-[80%] px-3 py-2 bg-magenta/20 border border-magenta/30 rounded-2xl rounded-tl-sm">
-								<p class="text-cream text-xs">Of course I do, silly. I told you! When you talk, I actually listen.</p>
-							</div>
-						</div>
-						<!-- User reply -->
-						<div class="flex justify-end">
-							<div class="max-w-[80%] px-3 py-2 bg-cream/10 border border-cream/20 rounded-2xl rounded-tr-sm">
-								<p class="text-cream text-xs">You're the best, you know that? 😘</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Input bar at bottom -->
-				<div class="absolute bottom-6 left-6 right-6">
-					<div class="flex items-center gap-2 p-2 bg-cream/5 border border-cream/10 rounded-full">
-						<input
-							type="text"
-							placeholder="Message..."
-							class="flex-1 bg-transparent text-cream text-xs placeholder:text-cream/30 outline-none px-2"
-							disabled
-						/>
-						<button class="w-8 h-8 bg-cream rounded-full flex items-center justify-center">
-							<svg class="w-4 h-4 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5m0 0l-7 7m7-7l7 7" transform="rotate(90 12 12)"></path>
-							</svg>
-						</button>
-					</div>
-				</div>
-				</div>
-			</div><!-- close chat content -->
-			</div><!-- close phone container -->
-		</div>
+		<!-- Phone will be added here after we verify clean slate -->
 	</section>
 
 	<!-- Below the fold — where revealed content will appear -->
 	<section class="min-h-screen bg-dark px-8 py-16">
 	</section>
+
+	<!-- ═══════════════════════════════════════════════════════════════════════════════
+	     HERO ANIMATION SPEC (Documentation Only)
+	     Scroll-driven phone reveal + Artisan Cut block
+	     Date: January 26, 2026
+	     ═══════════════════════════════════════════════════════════════════════════════
+
+	     THE FULL ANIMATION SEQUENCE
+	     ═══════════════════════════
+
+	     Phase 1: HERO ENTRY
+	     - Visitor starts at hero block
+	     - Hero headline + subhead visible
+	     - Phone is positioned below fold (peeking)
+
+	     Phase 2: SCROLL → CHAT BUBBLES APPEAR
+	     - As user scrolls, chat bubbles fade/slide in sequentially
+	     - Each message appears with staggered timing
+	     - Creates sense of conversation unfolding
+
+	     Phase 3: SCROLL → FULL PHONE REVEALED
+	     - Phone rises fully into view
+	     - Still front-facing at this point
+
+	     Phase 4: PHONE TILTS TO 3D ANGLE
+	     - Phone rotates to dramatic 3D tilt (the Morflax angle)
+	     - Titanium edge becomes visible
+	     - Transition: CSS transform OR crossfade between two Morflax PNGs
+
+	     Phase 5: ARTISAN CUT REVEAL
+	     - Behind/beneath tilted phone, three glowing strata appear
+	     - Copy fades in below
+	     - This is the "under-the-hood magic" moment
+
+	     ═══════════════════════════════════════════════════════════════════════════════
+
+	     ARTISAN CUT VISUAL CONCEPT
+	     ══════════════════════════
+
+	     "Under-the-hood magic" visualization:
+
+	     Phone floats forward (3D tilt). Behind and beneath it, three luminous
+	     horizontal strata — like geological layers or reactor core glow.
+	     Subtle, not diagrams. The feeling: something is processing beneath the surface.
+
+	     Visual language: STRATA GLOW (chosen)
+	     - Three soft horizontal bands of light beneath phone
+	     - Each a different magenta intensity
+	     - Suggests depth without explanation
+	     - Protects the "how", reveals the "what"
+
+	     Alternative concepts (not chosen):
+	     - Data filaments: Thin lines streaming from conversation down into darkness
+	     - Pulse rings: Concentric rings emanating downward like sonar
+
+	     ═══════════════════════════════════════════════════════════════════════════════
+
+	     ARTISAN CUT COPY
+	     ════════════════
+
+	     Headline (Satoshi Bold, spaced):
+	       A R T I S A N   C U T ™
+
+	     Subhead (Satoshi Medium, cream/70):
+	       Memory that actually means something.
+
+	     Three lines (one per memory layer, but layers not named):
+	       She remembers what you said.      ← (Journal)
+	       She remembers how you felt.       ← (Echoes)
+	       She remembers who you're becoming. ← (Arcs)
+
+	     Technical claim (JetBrains Mono, magenta/50):
+	       The only real memory architecture in modern AI conversation.
+
+	     Optional kicker (emotional close):
+	       Month 6 Sophie doesn't just know your birthday.
+	       She knows you go quiet when you're hurt.
+
+	     ═══════════════════════════════════════════════════════════════════════════════
+
+	     ARTISAN CUT BLOCK LAYOUT
+	     ════════════════════════
+
+	     ┌─────────────────────────────────────────────────┐
+	     │                                                 │
+	     │          A R T I S A N   C U T ™                │  ← Satoshi Bold, spaced
+	     │                                                 │
+	     │     Memory that actually means something.       │  ← Satoshi Medium, cream/70
+	     │                                                 │
+	     │  ┌───────────────────────────────────────────┐  │
+	     │  │                                           │  │
+	     │  │        [ PHONE WITH CHAT ]                │  │  ← Morflax PNG, tilted
+	     │  │         (3D tilt effect)                  │  │
+	     │  │                                           │  │
+	     │  │  ═════════════════════════════════════    │  │  ← Stratum 1 glow (brightest)
+	     │  │  ═══════════════════════════════         │  │  ← Stratum 2 glow (medium)
+	     │  │  ════════════════════════               │  │  ← Stratum 3 glow (faintest)
+	     │  │                                           │  │
+	     │  └───────────────────────────────────────────┘  │
+	     │                                                 │
+	     │     She remembers what you said.                │
+	     │     She remembers how you felt.                 │
+	     │     She remembers who you're becoming.          │
+	     │                                                 │
+	     │  ┌─────────────────────────────────────────────┐│
+	     │  │ The only real memory architecture in        ││  ← JetBrains Mono, magenta/50
+	     │  │ modern AI conversation.                     ││
+	     │  └─────────────────────────────────────────────┘│
+	     │                                                 │
+	     └─────────────────────────────────────────────────┘
+
+	     ═══════════════════════════════════════════════════════════════════════════════
+
+	     IMPLEMENTATION BREAKDOWN
+	     ════════════════════════
+
+	     | Element                      | Tool/Method                              |
+	     |------------------------------|------------------------------------------|
+	     | Tilted phone render          | Morflax PNG export (transparent bg)      |
+	     | Front-facing phone render    | Morflax PNG export (transparent bg)      |
+	     | Chat bubbles on scroll       | CSS animations + Intersection Observer   |
+	     | Phone tilt transition        | CSS transform OR two-PNG crossfade       |
+	     | Three-layer strata glow      | CSS gradients + box-shadows              |
+	     | Copy reveal                  | CSS fade-in on scroll                    |
+	     | Scroll choreography          | JavaScript scroll position tracking      |
+
+	     MORFLAX EXPORTS NEEDED:
+	     1. Front-facing phone PNG (2K, transparent bg) — for initial state
+	     2. Tilted phone PNG (2K, transparent bg) — for final reveal state
+	     3. Optional: Zoom Out Rotation video (MP4) — if we want pre-baked animation
+
+	     DECISION POINT:
+	     - Option A: Full scroll-driven animation (more work, more impact)
+	     - Option B: Just use Morflax static/video exports (faster, still looks great)
+
+	     Boss to decide based on time/energy.
+
+	     ═══════════════════════════════════════════════════════════════════════════════
+
+	     WHY THIS WORKS (Strategic)
+	     ══════════════════════════
+
+	     1. Reveals what, protects how
+	        Three lines describe outcomes (facts, feelings, patterns) without
+	        exposing Journal/Echoes/Arcs. Competitors can't reverse-engineer it.
+
+	     2. Technical credibility without jargon
+	        JetBrains Mono treatment + "architecture" signals sophistication.
+	        Glow strata suggest depth. Nothing requires explanation.
+
+	     3. Emotional close
+	        "She knows you go quiet when you're hurt" — memory moat made tangible.
+	        It's not about data. It's about being known.
+
+	     4. Scannable
+	        Three lines. One claim. Zero paragraphs.
+	        Matches spec: "After the emotional demo, drive home: this is real."
+
+	     ═══════════════════════════════════════════════════════════════════════════════
+	     END HERO ANIMATION SPEC
+	     ═══════════════════════════════════════════════════════════════════════════════ -->
+
 </div>
