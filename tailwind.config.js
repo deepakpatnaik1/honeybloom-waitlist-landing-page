@@ -5,19 +5,26 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				honey: {
-					50: '#fdf2f6',
-					100: '#fce7ef',
-					200: '#f9d0e0',
-					300: '#f4a9c6',
-					400: '#ec72a0',
-					500: '#AE0D46',  /* base: deep magenta/raspberry */
-					600: '#9a0b3d',
-					700: '#800932',
-					800: '#6b0829',
-					900: '#5a0723',
-					950: '#330413'
-				}
+				/**
+				 * Honeybloom Palette — LOCKED Jan 24, 2026
+				 *
+				 * Usage:
+				 * - Surfaces: 8% opacity bg + full border (e.g., bg-magenta/[0.08] border-magenta)
+				 * - Headlines: Full accent color (e.g., text-magenta)
+				 * - CTAs: Full saturation fill (e.g., bg-magenta)
+				 */
+
+				// Canvas
+				dark: '#121212',           // Google Material dark — background
+
+				// Sophie accent (Home page — romance, intimacy, warmth)
+				magenta: '#AE0D46',
+
+				// Business accent (Founders Club, Pricing — trust, clarity)
+				emerald: '#10B981',
+
+				// Text, light surfaces
+				cream: '#F5F0E6',
 			},
 			fontFamily: {
 				sans: ['Inter', 'system-ui', 'sans-serif']

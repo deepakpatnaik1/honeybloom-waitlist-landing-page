@@ -1,9 +1,17 @@
 @import 'tailwindcss';
 
+/* Fonts: Satoshi (headlines) + Inter (body) + JetBrains Mono (technical) */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
 /**
- * Honeybloom Palette — LOCKED Jan 24, 2026
+ * Honeybloom Design System — LOCKED Jan 25, 2026
  *
- * Colors:
+ * ═══════════════════════════════════════════════════════════════
+ * COLORS (locked Jan 24)
+ * ═══════════════════════════════════════════════════════════════
+ *
  *   "our black"          → bg-dark         #121212   Canvas
  *   "our sophie magenta" → bg-magenta      #AE0D46   Sophie accent (Home)
  *   "our emerald"        → bg-emerald      #10B981   Business accent (FC/Pricing)
@@ -12,11 +20,33 @@
  *   "our cream text"     → text-cream/70            Muted text
  *   "our soft emerald"   → bg-emerald/[0.08]        8% emerald surface
  *
- * Usage:
- *   Surfaces:  8% opacity bg + full border
- *   Headlines: Full accent color
- *   CTAs:      Full saturation fill
+ * ═══════════════════════════════════════════════════════════════
+ * TYPOGRAPHY (locked Jan 25)
+ * ═══════════════════════════════════════════════════════════════
+ *
+ * Scale: Perfect Fourth (1.333) · Base 18px
+ *
+ * Fonts:
+ *   Satoshi        → Headlines (font-satoshi)
+ *   Inter          → Body copy (font-inter)
+ *   JetBrains Mono → Technical terms (font-mono)
+ *
+ * Sizes:
+ *   text-hero     72px  Satoshi Bold     H1 hero headlines
+ *   text-display  48px  Satoshi Medium   H2, section titles
+ *   text-heading  32px  Satoshi Medium   Block titles
+ *   text-subhead  24px  Satoshi Medium   Subheadings
+ *   text-body     18px  Inter Regular    Body paragraphs
+ *   text-small    14px  Inter Regular    Captions, labels
+ *   text-tech     16px  JetBrains Mono   Technical terms (Artisan Cut™, GDPR)
+ *
+ * Line Heights:
+ *   Headlines: 1.1 - 1.2 (tight)
+ *   Body: 1.5 - 1.6 (readable)
+ *
+ * ═══════════════════════════════════════════════════════════════
  */
+
 @theme {
 	--color-dark: #121212;      /* "our black" — canvas */
 	--color-magenta: #AE0D46;   /* "our sophie magenta" — Sophie accent */
@@ -30,3 +60,296 @@ html, body {
 	padding: 0;
 	min-height: 100vh;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   FONT FAMILIES
+   ═══════════════════════════════════════════════════════════════ */
+
+.font-satoshi {
+	font-family: 'Satoshi', sans-serif;
+}
+
+.font-inter {
+	font-family: 'Inter', sans-serif;
+}
+
+.font-mono {
+	font-family: 'JetBrains Mono', monospace;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TYPE SCALE — Perfect Fourth (1.333) · Base 18px · Fluid
+   ═══════════════════════════════════════════════════════════════
+
+   Using clamp(min, preferred, max) for fluid scaling:
+   - Min: smallest acceptable size (phones)
+   - Preferred: scales with viewport (vw + base)
+   - Max: largest size (desktop)
+
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hero: 40px → 72px Satoshi Bold — H1 hero headlines */
+.text-hero {
+	font-family: 'Satoshi', sans-serif;
+	font-size: clamp(2.5rem, 4vw + 1.5rem, 4.5rem);
+	font-weight: 700;
+	line-height: 1.1;
+}
+
+/* Display: 32px → 48px Satoshi Medium — H2, section titles */
+.text-display {
+	font-family: 'Satoshi', sans-serif;
+	font-size: clamp(2rem, 3vw + 1rem, 3rem);
+	font-weight: 500;
+	line-height: 1.15;
+}
+
+/* Heading: 24px → 32px Satoshi Medium — Block titles */
+.text-heading {
+	font-family: 'Satoshi', sans-serif;
+	font-size: clamp(1.5rem, 2vw + 0.75rem, 2rem);
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+/* Subhead: 20px → 24px Satoshi Medium — Subheadings */
+.text-subhead {
+	font-family: 'Satoshi', sans-serif;
+	font-size: clamp(1.25rem, 1.5vw + 0.75rem, 1.5rem);
+	font-weight: 500;
+	line-height: 1.3;
+}
+
+/* Body: 16px → 18px Inter Regular — Body paragraphs */
+.text-body {
+	font-family: 'Inter', sans-serif;
+	font-size: clamp(1rem, 0.5vw + 0.875rem, 1.125rem);
+	font-weight: 400;
+	line-height: 1.6;
+}
+
+/* Small: 14px Inter Regular — Captions, labels (fixed) */
+.text-small {
+	font-family: 'Inter', sans-serif;
+	font-size: 0.875rem;
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+/* Tech: 14px → 16px JetBrains Mono — Technical terms */
+.text-tech {
+	font-family: 'JetBrains Mono', monospace;
+	font-size: clamp(0.875rem, 0.5vw + 0.75rem, 1rem);
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SHIMMERS & GLOWS — Motion radiates from Sophie
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes shimmer {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BREAKPOINTS — Tailwind v4 Defaults
+   ═══════════════════════════════════════════════════════════════
+
+   We use Tailwind's standard breakpoints. Mobile-first: styles apply
+   from that width and UP.
+
+   sm:   640px   Large phones, small tablets
+   md:   768px   Tablets (portrait)
+   lg:   1024px  Tablets (landscape), laptops
+   xl:   1280px  Desktops
+   2xl:  1536px  Large monitors
+
+   ───────────────────────────────────────────────────────────────
+   WHAT CHANGES AT EACH BREAKPOINT
+   ───────────────────────────────────────────────────────────────
+
+   Base (< 640px) — Phones
+   • Single column layouts
+   • Nav: logo + hamburger menu
+   • Hero: stacked (text above image)
+   • Typography: fluid min values (text-hero at 40px)
+
+   md (768px+) — Tablets
+   • Two-column layouts possible
+   • Nav: full links may appear
+   • Hero: side-by-side layout option
+
+   lg (1024px+) — Laptops
+   • Full desktop layouts
+   • Nav: all links visible, no hamburger
+   • Hero: full side-by-side with breathing room
+   • Typography: fluid max values approaching (text-hero ~60px)
+
+   xl (1280px+) — Desktops
+   • Max-width containers kick in (prevent ultra-wide stretch)
+   • Typography: at or near max values (text-hero at 72px)
+
+   ───────────────────────────────────────────────────────────────
+   CONTAINER MAX-WIDTHS
+   ───────────────────────────────────────────────────────────────
+
+   Content shouldn't stretch infinitely on wide screens.
+   Use max-w-* utilities:
+
+   max-w-screen-lg   1024px   For text-heavy sections
+   max-w-screen-xl   1280px   For standard content
+   max-w-screen-2xl  1536px   For full-bleed hero sections
+
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════
+   BLOCK LAYOUTS — Bento Vocabulary
+   ═══════════════════════════════════════════════════════════════
+
+   Every section on the page is a "block." Varying block layouts
+   creates rhythm and prevents the laundry-list feeling.
+
+   RULE: No two adjacent blocks should use the same layout.
+
+   ───────────────────────────────────────────────────────────────
+   1. HERO
+   ───────────────────────────────────────────────────────────────
+
+   The opening statement. Full viewport height (100vh).
+   One per page. Sets the tone.
+
+   Structure:
+   • Phone: stacked (headline → visual → CTA)
+   • Desktop: split or centered with visual element
+
+   Use for: First impression, Sophie introduction
+
+   ───────────────────────────────────────────────────────────────
+   2. SPLIT
+   ───────────────────────────────────────────────────────────────
+
+   Two columns: text + visual. The workhorse for feature deep-dives.
+
+   Variants:
+   • Text Left / Visual Right (default)
+   • Visual Left / Text Right (flipped — use to break monotony)
+   • 50/50 or 40/60 ratio
+
+   Structure:
+   • Phone: stacks vertically (visual above or below text)
+   • Desktop: side-by-side, vertically centered
+
+   Use for: Explaining ONE feature with room to breathe.
+            Memory, visual consistency, emotional awareness.
+
+   Rhythm tip: Alternate sides. If Block A is text-left,
+               Block B should be text-right.
+
+   ───────────────────────────────────────────────────────────────
+   3. FEATURE ROW
+   ───────────────────────────────────────────────────────────────
+
+   Horizontal row of 3-5 equal cards. Scannable at a glance.
+
+   Structure:
+   • Phone: 1 column, stacked
+   • Tablet: 2-3 columns
+   • Desktop: 3-5 columns, equal width
+
+   Card anatomy: Icon + Title + One-liner (no paragraphs)
+
+   Use for: Secondary benefits, quick hits, "we also have..."
+            Privacy, NSFW, No judgment, Customization.
+
+   Caution: Don't stack two Feature Rows. They blur together.
+
+   ───────────────────────────────────────────────────────────────
+   4. SPOTLIGHT
+   ───────────────────────────────────────────────────────────────
+
+   Single element, centered, with breathing room. A moment of pause.
+
+   Structure:
+   • Centered card or visual
+   • Generous vertical padding (py-24 to py-32)
+   • Often has a subtle background treatment (8-30 box)
+
+   Use for: CTA blocks, urgency moments, "one more thing" reveals.
+            Founding member offer, gift store teaser.
+
+   ───────────────────────────────────────────────────────────────
+   5. STATS BAR
+   ───────────────────────────────────────────────────────────────
+
+   Horizontal row of big numbers or short facts. Social proof.
+
+   Structure:
+   • 3-4 items, evenly spaced
+   • Large number/word + small label below
+   • Often separated by subtle vertical dividers
+
+   Example: "500 Founding Spots | Lifetime Access | Free to Join"
+
+   Use for: Credibility, urgency, quantifiable claims.
+
+   ───────────────────────────────────────────────────────────────
+   6. BENTO GRID
+   ───────────────────────────────────────────────────────────────
+
+   Asymmetric grid with mixed cell sizes. Visual feast.
+
+   Structure:
+   • CSS Grid with varying span values
+   • Some cells are images, some are text, some are stats
+   • Feels organic, editorial, magazine-like
+
+   Use for: Overview sections, "everything at a glance" moments.
+
+   Caution: High complexity. Use sparingly (once per page max).
+            Needs careful responsive handling.
+
+   ───────────────────────────────────────────────────────────────
+   7. TESTIMONIAL
+   ───────────────────────────────────────────────────────────────
+
+   Quote-focused block. Can be single or carousel.
+
+   Structure:
+   • Large quote text (text-display or text-heading)
+   • Attribution below (name, context)
+   • Optional avatar or visual
+
+   Use for: Social proof, emotional resonance, "people like me."
+
+   ───────────────────────────────────────────────────────────────
+   SEQUENCING — Creating Rhythm
+   ───────────────────────────────────────────────────────────────
+
+   Bad:  Feature Row → Feature Row → Feature Row (monotonous)
+   Bad:  Split → Split → Split (predictable)
+
+   Good: Hero → Split → Feature Row → Split (flipped) → Spotlight
+   Good: Hero → Bento → Split → Stats Bar → CTA Spotlight
+
+   The eye needs variety. Each scroll should reveal a new shape.
+
+   ───────────────────────────────────────────────────────────────
+   MOBILE BEHAVIOR
+   ───────────────────────────────────────────────────────────────
+
+   All layouts collapse gracefully on mobile:
+   • Split → stacks vertically
+   • Feature Row → single column
+   • Bento → simplified grid or stack
+   • Stats Bar → 2x2 grid or stack
+
+   The variety that exists on desktop becomes more subtle on mobile,
+   but the content order and emphasis should still create rhythm.
+
+   ═══════════════════════════════════════════════════════════════ */

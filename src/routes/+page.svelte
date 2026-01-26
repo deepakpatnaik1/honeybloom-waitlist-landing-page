@@ -7,4 +7,5 @@
 </nav>
 
 <div class="min-h-screen bg-dark">
+	<!-- Landing page content goes here -->
 </div>
