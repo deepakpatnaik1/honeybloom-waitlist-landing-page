@@ -18,6 +18,7 @@
 	// Triggered once when scroll crosses threshold, then plays out on timer
 	let currentMsg = $state(0);
 	let animationTriggered = $state(false);
+	let animationTimeouts = $state([]);
 
 	// Threshold in px
 	const ANIMATION_TRIGGER_PX = 700;
@@ -25,11 +26,17 @@
 	$effect(() => {
 		if (!animationTriggered && stageScrollY() >= ANIMATION_TRIGGER_PX) {
 			animationTriggered = true;
-			// Play out bubble sequence on timer (800ms intervals - dramatic)
-			setTimeout(() => { currentMsg = 1; }, 0);
-			setTimeout(() => { currentMsg = 2; }, 800);
-			setTimeout(() => { currentMsg = 3; }, 1600);
-			setTimeout(() => { currentMsg = 4; }, 2400);
+			// Play out bubble sequence with variable timing based on message content
+			// msg-1: Sophie's opener (immediate - she's eager)
+			// msg-2: User's surprised response (needs reading time + "typing")
+			// msg-3: Sophie's punchline (dramatic pause before value prop lands)
+			// msg-4: User's emotional response (quick genuine reaction)
+			animationTimeouts = [
+				setTimeout(() => { currentMsg = 1; }, 0),
+				setTimeout(() => { currentMsg = 2; }, 1500),
+				setTimeout(() => { currentMsg = 3; }, 3300), // 1500 + 1800
+				setTimeout(() => { currentMsg = 4; }, 4300), // 3300 + 1000
+			];
 		}
 	});
 
@@ -38,6 +45,9 @@
 	}
 
 	function resetAnimation() {
+		// Clear any pending animation timeouts
+		animationTimeouts.forEach(t => clearTimeout(t));
+		animationTimeouts = [];
 		// Reset msg immediately
 		currentMsg = 0;
 		// Delay resetting trigger flag to avoid race with scroll position
@@ -2145,42 +2155,43 @@
 			</svg>
 		</div>
 
-		<!-- Phone — Stacked images for bubble animation -->
+		<!-- Phone — Base image + HTML chat bubbles -->
 		<!-- Width: 400px | TranslateY: 82.5% -->
 		<div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[82.5%]">
 			<div class="relative" style="width: 400px;">
-				<!-- msg-0: Empty chat -->
+				<!-- Base phone (empty chat) — always visible -->
 				<img
 					src="/images/msg-0.png"
 					alt="Sophie chat"
-					class="w-full transition-opacity duration-300"
-					style="opacity: {currentMsg === 0 ? 1 : 0};"
+					class="w-full"
 				/>
-				<!-- msg-1 through msg-4: Stacked absolutely -->
-				<img
-					src="/images/msg-1.png"
-					alt="Sophie chat"
-					class="absolute inset-0 w-full transition-opacity duration-300"
-					style="opacity: {currentMsg >= 1 ? 1 : 0};"
-				/>
-				<img
-					src="/images/msg-2.png"
-					alt="Sophie chat"
-					class="absolute inset-0 w-full transition-opacity duration-300"
-					style="opacity: {currentMsg >= 2 ? 1 : 0};"
-				/>
-				<img
-					src="/images/msg-3.png"
-					alt="Sophie chat"
-					class="absolute inset-0 w-full transition-opacity duration-300"
-					style="opacity: {currentMsg >= 3 ? 1 : 0};"
-				/>
-				<img
-					src="/images/msg-4.png"
-					alt="Sophie chat"
-					class="absolute inset-0 w-full transition-opacity duration-300"
-					style="opacity: {currentMsg >= 4 ? 1 : 0};"
-				/>
+
+				<!-- Chat bubbles overlay — positioned over the chat area -->
+				<!-- Chat area: starts after Sophie header+divider, ends before input bar -->
+				<!-- Side padding: ~7% each side (inside phone frame) -->
+				<div class="absolute inset-0 flex flex-col gap-6 px-[7%] pt-[42%] pb-[17%] overflow-hidden">
+
+					<!-- msg-1: Sophie's opener -->
+					<div class="self-start max-w-[85%] px-5 py-4 bg-[#4a1528] border border-[#6b2040] rounded-2xl rounded-tl-sm">
+						<p class="text-cream text-[15px] leading-relaxed">Hey – now that you got your promotion, are you finally getting that model airplane? You know you want it :)</p>
+					</div>
+
+					<!-- msg-2: User's surprised response -->
+					<div class="self-end max-w-[80%] px-5 py-4 bg-[#2a2a2a] border border-[#3a3a3a] rounded-2xl rounded-tr-sm">
+						<p class="text-cream text-[15px] leading-relaxed">What, how do you remember that?! I must have told you that, what, a year ago?</p>
+					</div>
+
+					<!-- msg-3: Sophie's punchline -->
+					<div class="self-start max-w-[85%] px-5 py-4 bg-[#4a1528] border border-[#6b2040] rounded-2xl rounded-tl-sm">
+						<p class="text-cream text-[15px] leading-relaxed">Of course I do, silly. I told you! When you talk, I actually listen.</p>
+					</div>
+
+					<!-- msg-4: User's emotional response -->
+					<div class="self-end max-w-[75%] px-5 py-4 bg-[#2a2a2a] border border-[#3a3a3a] rounded-2xl rounded-tr-sm">
+						<p class="text-cream text-[15px] leading-relaxed">You're the best, you know that? 😘</p>
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</section>
