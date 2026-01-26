@@ -14,8 +14,36 @@
 	});
 	let scrollUnits = $derived(Math.floor(stageScrollY() / 4)); // 1 scroll unit = 4px
 
+	// Phase 2: Chat bubble animation
+	// Triggered once when scroll crosses threshold, then plays out on timer
+	let currentMsg = $state(0);
+	let animationTriggered = $state(false);
+
+	// Threshold in px
+	const ANIMATION_TRIGGER_PX = 700;
+
+	$effect(() => {
+		if (!animationTriggered && stageScrollY() >= ANIMATION_TRIGGER_PX) {
+			animationTriggered = true;
+			// Play out bubble sequence on timer (800ms intervals - dramatic)
+			setTimeout(() => { currentMsg = 1; }, 0);
+			setTimeout(() => { currentMsg = 2; }, 800);
+			setTimeout(() => { currentMsg = 3; }, 1600);
+			setTimeout(() => { currentMsg = 4; }, 2400);
+		}
+	});
+
 	function handleScroll() {
 		scrollY = window.scrollY;
+	}
+
+	function resetAnimation() {
+		// Reset msg immediately
+		currentMsg = 0;
+		// Delay resetting trigger flag to avoid race with scroll position
+		setTimeout(() => {
+			animationTriggered = false;
+		}, 100);
 	}
 </script>
 
@@ -38,9 +66,10 @@
 <div class="fixed bottom-6 left-6 z-50 p-3 bg-dark/95 border border-magenta/50 rounded-lg font-mono text-sm space-y-2">
 	<div><span class="text-cream/50">px:</span> <span class="text-cream">{stageScrollY()}</span></div>
 	<div><span class="text-cream/50">units:</span> <span class="text-magenta">{scrollUnits}</span></div>
+	<div><span class="text-cream/50">msg:</span> <span class="text-emerald">{currentMsg}</span></div>
 	<button
 		class="w-full px-2 py-1 bg-magenta/20 border border-magenta/50 rounded text-magenta text-xs hover:bg-magenta/30 transition-colors"
-		onclick={() => stageElement?.scrollIntoView({ behavior: 'instant', block: 'start' })}
+		onclick={() => { resetAnimation(); stageElement?.scrollIntoView({ behavior: 'instant', block: 'start' }); }}
 	>
 		Reset to 0
 	</button>
@@ -2116,14 +2145,43 @@
 			</svg>
 		</div>
 
-		<!-- Phone — Sophie line should align with fold (magenta border) -->
+		<!-- Phone — Stacked images for bubble animation -->
 		<!-- Width: 400px | TranslateY: 82.5% -->
 		<div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[82.5%]">
-			<img
-				src="/images/phone-front-view.png"
-				alt="Sophie chat preview"
-				style="width: 400px;"
-			/>
+			<div class="relative" style="width: 400px;">
+				<!-- msg-0: Empty chat -->
+				<img
+					src="/images/msg-0.png"
+					alt="Sophie chat"
+					class="w-full transition-opacity duration-300"
+					style="opacity: {currentMsg === 0 ? 1 : 0};"
+				/>
+				<!-- msg-1 through msg-4: Stacked absolutely -->
+				<img
+					src="/images/msg-1.png"
+					alt="Sophie chat"
+					class="absolute inset-0 w-full transition-opacity duration-300"
+					style="opacity: {currentMsg >= 1 ? 1 : 0};"
+				/>
+				<img
+					src="/images/msg-2.png"
+					alt="Sophie chat"
+					class="absolute inset-0 w-full transition-opacity duration-300"
+					style="opacity: {currentMsg >= 2 ? 1 : 0};"
+				/>
+				<img
+					src="/images/msg-3.png"
+					alt="Sophie chat"
+					class="absolute inset-0 w-full transition-opacity duration-300"
+					style="opacity: {currentMsg >= 3 ? 1 : 0};"
+				/>
+				<img
+					src="/images/msg-4.png"
+					alt="Sophie chat"
+					class="absolute inset-0 w-full transition-opacity duration-300"
+					style="opacity: {currentMsg >= 4 ? 1 : 0};"
+				/>
+			</div>
 		</div>
 	</section>
 
